@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D99D3F69-266F-4D30-A2BC-A7982C3EE64C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApplication.Domain", "TodoApplication.Domain\TodoApplication.Domain.csproj", "{D1515810-EEA0-491F-9943-723AB79B34CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApplication.Infrastructure", "TodoApplication.Infrastructure\TodoApplication.Infrastructure.csproj", "{D0157FFA-C8AD-4FE4-8606-A079A70E04E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApplication.Application", "TodoApplication.Application\TodoApplication.Application.csproj", "{1BEB6D73-DFED-437A-AFF9-D1745809D10A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApplication.API", "TodoApplication.API\TodoApplication.API.csproj", "{7B4067F0-3800-471B-81D2-F4D80B89EFA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientApp", "ClientApp", "{4BB4A3E6-244A-4729-BDFE-981353AAC842}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "todoItemWebApp", "todoItemWebApp\", "{14A7A025-37BB-42EF-883C-59DBCC0FE553}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_53768"
+		Debug.AspNetCompiler.PhysicalPath = "todoItemWebApp\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53768\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_53768"
+		Release.AspNetCompiler.PhysicalPath = "todoItemWebApp\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53768\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "53768"
+		SlnRelativePath = "todoItemWebApp\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1515810-EEA0-491F-9943-723AB79B34CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1515810-EEA0-491F-9943-723AB79B34CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1515810-EEA0-491F-9943-723AB79B34CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1515810-EEA0-491F-9943-723AB79B34CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0157FFA-C8AD-4FE4-8606-A079A70E04E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0157FFA-C8AD-4FE4-8606-A079A70E04E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0157FFA-C8AD-4FE4-8606-A079A70E04E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0157FFA-C8AD-4FE4-8606-A079A70E04E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BEB6D73-DFED-437A-AFF9-D1745809D10A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BEB6D73-DFED-437A-AFF9-D1745809D10A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BEB6D73-DFED-437A-AFF9-D1745809D10A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BEB6D73-DFED-437A-AFF9-D1745809D10A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B4067F0-3800-471B-81D2-F4D80B89EFA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B4067F0-3800-471B-81D2-F4D80B89EFA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B4067F0-3800-471B-81D2-F4D80B89EFA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B4067F0-3800-471B-81D2-F4D80B89EFA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14A7A025-37BB-42EF-883C-59DBCC0FE553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A7A025-37BB-42EF-883C-59DBCC0FE553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A7A025-37BB-42EF-883C-59DBCC0FE553}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A7A025-37BB-42EF-883C-59DBCC0FE553}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D1515810-EEA0-491F-9943-723AB79B34CE} = {D99D3F69-266F-4D30-A2BC-A7982C3EE64C}
+		{D0157FFA-C8AD-4FE4-8606-A079A70E04E8} = {D99D3F69-266F-4D30-A2BC-A7982C3EE64C}
+		{1BEB6D73-DFED-437A-AFF9-D1745809D10A} = {D99D3F69-266F-4D30-A2BC-A7982C3EE64C}
+		{7B4067F0-3800-471B-81D2-F4D80B89EFA0} = {D99D3F69-266F-4D30-A2BC-A7982C3EE64C}
+		{4BB4A3E6-244A-4729-BDFE-981353AAC842} = {D99D3F69-266F-4D30-A2BC-A7982C3EE64C}
+		{14A7A025-37BB-42EF-883C-59DBCC0FE553} = {4BB4A3E6-244A-4729-BDFE-981353AAC842}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D2D4BD2-B665-45A0-922B-3411C49146BE}
+	EndGlobalSection
+EndGlobal
