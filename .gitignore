@@ -46,7 +46,7 @@ msbuild.wrn
 /bazel-out
 
 # dependencies
-TodoItemWebApp/node_modules
+node_modules
 
 # profiling files
 chrome-profiler-events*.json
