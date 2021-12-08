@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-import { ModalComponent } from '../components/modal/modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,9 @@ export class ModalService {
         buttonName: buttonName
       }
     };
-    this.bsModalRef = this.modalService.show(ModalComponent, initialState);
+    this.modalService
+    // var x  = this.modalService.show(ModalComponent, initialState);
+    // console.log(x);
   }
 
   closeModal() {

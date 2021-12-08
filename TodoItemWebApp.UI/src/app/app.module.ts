@@ -1,4 +1,3 @@
-import { AppCalendarModule } from './modules/app-calendar.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,10 +6,11 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { AppBootstrapModule } from './modules/app-bootstrap.module';
-import { ModalComponent } from './components/modal/modal.component';
+import { ModalComponent } from "./components/modal/modal.component";
 import { AppFormsModule } from './modules/app-forms.module';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { AppCalendarModule } from './modules/app-calendar.module';
+import { ModalController } from './components/modal/modalController';
+
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     AppFormsModule,
     AppCalendarModule
   ],
-  providers: [],
+  providers: [{ provide: ModalController, useExisting: ModalComponent }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

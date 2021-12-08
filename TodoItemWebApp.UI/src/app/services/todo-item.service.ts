@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {TodoItem} from '../models/todoItem'
 
 @Injectable({
   providedIn: 'root'
@@ -7,15 +8,15 @@ export class TodoItemService {
 
   constructor() { }
 
-  addItem(){
+  addItem(todoItem: TodoItem){
 
   }
 
-  removeItem(){
+  removeItem(id: any){
 
   }
 
-  editItem(){
+  editItem(id: any, todoItem: TodoItem){
 
   }
 }
