@@ -5,8 +5,10 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
-import { addDays, addHours, endOfMonth, startOfDay, subDays } from 'date-fns';
-import { Subject } from 'rxjs';
+import { addDays, addHours, endOfMonth, startOfDay, startOfMonth, subDays } from 'date-fns';
+import { Subject, Subscription } from 'rxjs';
+import { TodoItem } from 'src/app/models/todoItem';
+import { TodoItemService } from 'src/app/services/todo-item.service';
 import { ModalController } from '../modal/modalController';
 
 
@@ -60,51 +62,33 @@ export class CalendarComponent implements OnInit {
     },
   ];
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-  ];
+  events: CalendarEvent[] = [];
+  event: CalendarEvent = {
+    start: startOfMonth(new Date()),
+    title: '',
+  };
 
+  private todoItemSub: Subscription;
+  todoItems: TodoItem[] = [];
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController, private todoItemService: TodoItemService) { }
 
   ngOnInit(): void {
+    this.todoItemSub = this.todoItemService.getItemUpdateListener().subscribe(item => {
+      this.todoItems = item;
+      console.log(item);
+      //console.log(this.todoItems.length);
+      if(this.todoItems.length > 0) {
+        this.todoItems.map(r => {
+          this.event.start = r.startDate;
+          this.event.end = r.endDate,
+          this.event.title = r.title
+        });
+        this.events.push(this.event);
+        //this.refresh.next();
+      }
+    });
+    //console.log(this.events)
   }
 
   openModalTodoItem() : void {
@@ -156,5 +140,9 @@ export class CalendarComponent implements OnInit {
 
   setView(view: CalendarView) {
     this.view = view;
+  }
+
+  ngOnDestroy(){
+    this.todoItemSub.unsubscribe();
   }
 }

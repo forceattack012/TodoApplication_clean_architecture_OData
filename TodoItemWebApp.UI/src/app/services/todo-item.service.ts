@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import {TodoItem} from '../models/todoItem'
 
 @Injectable({
@@ -6,10 +8,21 @@ import {TodoItem} from '../models/todoItem'
 })
 export class TodoItemService {
 
-  constructor() { }
+  todoItems = new Subject<TodoItem[]>();
 
-  addItem(todoItem: TodoItem){
+  constructor(private http: HttpClient) { }
 
+  getItem(){
+    //return this.http.get();
+  }
+
+  getItemUpdateListener(){
+    return this.todoItems.asObservable();
+  }
+
+  addItem(todoItem: TodoItem) {
+    this.todoItems.next([todoItem]);
+    console.log(this.todoItems);
   }
 
   removeItem(id: any){

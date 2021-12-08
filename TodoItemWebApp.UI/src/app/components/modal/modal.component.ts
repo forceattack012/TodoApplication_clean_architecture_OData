@@ -1,6 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { TodoItemService } from 'src/app/services/todo-item.service';
 import { ModalController } from './modalController';
 
 
@@ -25,7 +26,7 @@ export class ModalComponent implements OnInit , ModalController {
   private _idModal : string | number;
 
 
-  constructor(private modalService: BsModalService, private fb: FormBuilder) {
+  constructor(private modalService: BsModalService, private fb: FormBuilder, private todoItemService: TodoItemService) {
   }
 
   ngOnInit(): void {
@@ -38,23 +39,22 @@ export class ModalComponent implements OnInit , ModalController {
   }
 
   createTodoItem() {
-    // if(this.todoItemForm.invalid){
-    //   return;
-    // }
-    // var startDate = this.now;
-    // var endDate = this.now;
-    // console.log('now :'+this.now);
+    if(this.todoItemForm.invalid){
+      return;
+    }
+    if(this.getStartDate > this.getEndDate){
+      return;
+    }
+    this.todoItemService.addItem(this.todoItemForm.value);
+    this.close();
+  }
 
-    // var stHr = this.now.getHours() + parseInt(this.todoItemForm.controls['startHours'].value);
-    // var stEm = this.now.getMinutes() + parseInt(this.todoItemForm.controls['startMinutes'].value);
+  get getStartDate() : Date {
+    return this.todoItemForm.controls['startDate'].value;
+  }
 
-    // var edHr = this.now.getHours() + parseInt(this.todoItemForm.controls['endHours'].value);
-    // var edEm = this.now.getMinutes() + parseInt(this.todoItemForm.controls['endMinutes'].value);
-    // startDate.setHours(stHr+stEm);
-    // endDate.setHours(edHr+edEm);
-
-    // console.log('start :'+startDate);
-    // console.log('end :'+endDate);
+  get getEndDate() : Date {
+    return this.todoItemForm.controls['endDate'].value;
   }
 
   deleteTodoItem() {
@@ -74,6 +74,8 @@ export class ModalComponent implements OnInit , ModalController {
   close() {
     this.modalService.hide(this._idModal);
   }
-
+  test(event) {
+    console.log(event.target.value);
+  }
 
 }

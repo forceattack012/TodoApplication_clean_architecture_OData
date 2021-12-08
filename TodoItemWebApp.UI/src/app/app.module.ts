@@ -10,8 +10,7 @@ import { ModalComponent } from "./components/modal/modal.component";
 import { AppFormsModule } from './modules/app-forms.module';
 import { AppCalendarModule } from './modules/app-calendar.module';
 import { ModalController } from './components/modal/modalController';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,8 @@ import { ModalController } from './components/modal/modalController';
     AppRoutingModule,
     AppBootstrapModule,
     AppFormsModule,
-    AppCalendarModule
+    AppCalendarModule,
+    HttpClientModule
   ],
   providers: [{ provide: ModalController, useExisting: ModalComponent }],
   bootstrap: [AppComponent]
