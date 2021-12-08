@@ -1,0 +1,56 @@
+<!-- <div class="modal-header">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="close()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="todoItemForm">
+    <div class="form-group row">
+      <label for="title" class="col-sm-3 col-form-label">Title : </label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="title" formControlName="title">
+      </div>
+    </div>
+    <div class="form-group row mt-3">
+      <label for="description" class="col-sm-3 col-form-label">Description : </label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="description" formControlName="description">
+      </div>
+    </div>
+    <div class="form-group row mt-3">
+      <label for="startTime" class="col-sm-3 col-form-label">Start Time :</label>
+      <div class="col-sm-3">
+        <select class="form-control" id="startTime" name="startTime" (change)="changeStartHour($event)" formControlName="startHours">
+          <option value="">0</option>
+          <option *ngFor="let hour of hours">{{hour}}</option>
+        </select>
+      </div>
+      <div class="col-3">
+        <select class="form-control" name="startTime" (change)="changeStartMinute($event)" formControlName="startMinutes">
+          <option value="">0</option>
+          <option *ngFor="let minute of minutes">{{minute}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row mt-3">
+      <label for="endTime" class="col-sm-3 col-form-label">End Time :</label>
+      <div class="col-sm-3">
+        <select class="form-control" id="endTime" name="endTime" (change)="changeEndHour($event)" formControlName="endHours">
+          <option value="">0</option>
+          <option *ngFor="let hour of hours">{{hour}}</option>
+        </select>
+      </div>
+      <div class="col-3">
+        <select class="form-control" name="endTime" (change)="changeEndMinute($event)" formControlName="endMinutes">
+          <option value="">0</option>
+          <option *ngFor="let minute of minutes">{{minute}}</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" *ngIf="buttonName === 'Create'" (click)="createTodoItem()">{{buttonName}}</button>
+  <button type="button" class="btn btn-danger" (click)="deleteTodoItem()" >Delete</button>
+</div> -->
