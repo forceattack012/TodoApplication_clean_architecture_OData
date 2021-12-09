@@ -1,11 +1,9 @@
 <div class="container">
-  <div class="row px-5" >
+  <div class="row px-5 mt-4" >
     <div class="col">
-      <b>Create Event</b>
-      <span style="font-size: 2rem;">
-        <button id="btnCreate" class="btn" (click)="openModalTodoItem()">
-          <i class="fas fa-plus-circle"></i>
-        </button>
+      <span class="create-event mr-2">Create Event</span>
+      <span class="btn-create-event" (click)="openModalTodoItem()">
+        <i class="fas fa-plus-circle"></i>
       </span>
     </div>
   </div>
@@ -15,16 +13,18 @@
         <div class="btn btn-primary" mwlCalendarPreviousView
           [view]="view"
           [(viewDate)]="viewDate">
-          Previous
+          <i class="fas fa-chevron-left"></i>
+          Prev
         </div>
-        <div class="btn btn-outline-secondary" mwlCalendarToday
+        <div class="btn btn-outline-secondary mr-1 ml-1" mwlCalendarToday
           [(viewDate)]="viewDate"> Today
         </div>
-        <div class="btn btn-primary" mwlCalendarNextView
+        <div class="btn btn btn-primary" mwlCalendarNextView
             [view]="view"
             [(viewDate)]="viewDate"
             (viewDateChange)="closeOpenMonthViewDay()">
-         Next
+            Next
+          <i class="fas fa-chevron-right"></i>
         </div>
     </div>
     <div class="col-md-4">

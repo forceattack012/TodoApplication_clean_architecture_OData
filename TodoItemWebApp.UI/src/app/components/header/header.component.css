@@ -1,0 +1,39 @@
+
+.bell-icon {
+  width: 30px;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 20px;
+  background: white;
+}
+
+.bell-icon:hover {
+  cursor: pointer;
+  background-color: aqua;
+}
+
+.text-name {
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  width: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white
+}
+
+.text-name:hover {
+  cursor: pointer;
+  color: aqua;
+}
+
+.text-todo-item {
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  width: 40px;
+}
+
+.text-todo-item:hover {
+  color: aqua;
+}

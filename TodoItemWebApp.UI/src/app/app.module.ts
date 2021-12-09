@@ -11,13 +11,15 @@ import { AppFormsModule } from './modules/app-forms.module';
 import { AppCalendarModule } from './modules/app-calendar.module';
 import { ModalController } from './components/modal/modalController';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     CalendarComponent,
-    ModalComponent
+    ModalComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

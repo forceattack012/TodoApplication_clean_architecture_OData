@@ -132,8 +132,6 @@ export class ModalComponent implements OnInit , ModalController {
   close() {
     this.modalService.hide();
   }
-  test(event) {
-    console.log(event.target.value);
-  }
+
 
 }
