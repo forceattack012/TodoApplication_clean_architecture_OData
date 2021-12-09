@@ -10,12 +10,18 @@
       <label for="title" class="col-sm-3 col-form-label">Title : </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" id="title" formControlName="title">
+        <div *ngIf="getTitle.invalid && (getTitle.dirty || getTitle.touched)">
+          <small class="text-danger" *ngIf="getTitle?.errors['required']">Please enter a Title</small>
+        </div>
       </div>
     </div>
     <div class="form-group row mt-3">
       <label for="description" class="col-sm-3 col-form-label">Description : </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" id="description" formControlName="description">
+        <div *ngIf="getDescription.invalid && (getDescription.dirty || getDescription.touched)">
+          <small class="text-danger" *ngIf="getDescription?.errors['required']">Please enter a description</small>
+        </div>
       </div>
     </div>
     <div class="form-group row mt-3">
@@ -37,6 +43,9 @@
           <span class="input-group-text" style="font-size: 1rem;">
             <i class="fa fa-calendar" aria-hidden="true"></i>
           </span>
+        </div>
+        <div *ngIf="getStartDate.invalid && getStartDate.dirty">
+          <small class="text-danger" *ngIf="getStartDate?.errors['required']">Please select a start date</small>
         </div>
       </div>
     </div>
@@ -60,12 +69,19 @@
             <i class="fa fa-calendar" aria-hidden="true"></i>
           </span>
         </div>
+        <div *ngIf="getEndDate.invalid && getEndDate.dirty">
+          <small class="text-danger" *ngIf="getEndDate?.errors['required']">Please select a end date</small>
+        </div>
+        <small class="text-danger" *ngIf="errorMessageDateTime">{{errorMessageDateTime}}</small>
       </div>
     </div>
   </form>
 </div>
+<div class="text-right mr-3" style="color:gray;" *ngIf="todoItem !== undefined && todoItem.createdDate !== null">Created Date : {{todoItem.createdDate | date: 'YYYY-MM-dd HH:mm:ss'}}</div>
+<div class="text-right mr-3" style="color:gray;" *ngIf="todoItem !== undefined && todoItem.modifyDate !== null">Modify Date : {{todoItem.modifyDate | date: 'YYYY-MM-dd HH:mm:ss'}} </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-primary" *ngIf="buttonName === 'Create'" (click)="createTodoItem()">{{buttonName}}</button>
   <button type="button" class="btn btn-primary" *ngIf="buttonName === 'Edit'" (click)="editTodoItem(eventId)">{{buttonName}}</button>
   <button type="button" class="btn btn-danger" (click)="deleteTodoItem(eventId)" *ngIf="buttonName !== 'Create'">Delete</button>
 </div>
+<app-loading *ngIf=isLoading></app-loading>

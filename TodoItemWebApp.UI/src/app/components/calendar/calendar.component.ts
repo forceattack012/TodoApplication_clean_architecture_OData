@@ -70,12 +70,14 @@ export class CalendarComponent implements OnInit {
 
   private todoItemSub: Subscription;
   todoItems: TodoItem[] = [];
+  isLoading = false;
 
   constructor(private modalController: ModalController, private todoItemService: TodoItemService) { }
 
   ngOnInit(): void {
     this.todoItemService.getItem();
     this.todoItemSub = this.todoItemService.getItemUpdateListener().subscribe(item => {
+      this.isLoading = true;
       this.todoItems = item;
       if(this.todoItems.length > 0) {
         this.events = this.todoItems.map(r => {
@@ -88,6 +90,7 @@ export class CalendarComponent implements OnInit {
         });
         this.refresh.next();
       }
+      this.isLoading = false;
     });
   }
 
@@ -98,18 +101,9 @@ export class CalendarComponent implements OnInit {
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    // if (isSameMonth(date, this.viewDate)) {
-    //   if (
-    //     (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-    //     events.length === 0
-    //   ) {
-    //     this.activeDayIsOpen = false;
-    //   } else {
-    //     this.activeDayIsOpen = true;
-    //   }
-    //   this.viewDate = date;
-    // }
-    //console.log(events);
+    // var title = 'Create Todo Item';
+    // var buttonName = 'Create';
+    // this.modalController.open(title, buttonName)
   }
 
   eventTimesChanged({
@@ -135,9 +129,6 @@ export class CalendarComponent implements OnInit {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    if(action !== 'Clicked'){
-      return;
-    }
     this.modalController.open('Edit Todo Item','Edit',event.id);
   }
 

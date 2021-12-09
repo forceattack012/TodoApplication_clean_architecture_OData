@@ -1,13 +1,11 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 import { Component, Injectable, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-import { title } from 'process';
-import { map } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { TodoItem } from 'src/app/models/todoItem';
 import { TodoItemService } from 'src/app/services/todo-item.service';
 import { ModalController } from './modalController';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-modal',
@@ -26,9 +24,12 @@ export class ModalComponent implements OnInit , ModalController {
   buttonName? : string;
   protected now: Date = new Date();
   todoItemForm: FormGroup;
-  private bsModalRef: BsModalRef;
   private eventId : string | number;
   todoItem: TodoItem;
+  isLoading = false;
+  errorMessageDateTime? : string;
+  private todoItemSub: Subscription;
+  todoItems: TodoItem[] = [];
 
   constructor(private modalService: BsModalService, private fb: FormBuilder, private todoItemService: TodoItemService) {
   }
@@ -42,9 +43,10 @@ export class ModalComponent implements OnInit , ModalController {
     });
 
     if(this.eventId !== undefined){
+      this.isLoading = true;
        this.todoItemService.getTodoItemById(this.eventId).subscribe(result =>{
           let item: TodoItem;
-          result.value.forEach((todo)=> {
+          this.todoItem = result.value.forEach((todo)=> {
             item = {
               id: todo.Id,
               title: todo.Title,
@@ -59,41 +61,51 @@ export class ModalComponent implements OnInit , ModalController {
           this.setFormValue('description', item.description);
           this.setFormValue('startDate', item.startSchedule);
           this.setFormValue('endDate', item.endSchedule);
+          this.setTodoItem(item);
+          this.isLoading = false;
        });
     }
   }
 
+  setTodoItem(item: TodoItem){
+    this.todoItem = item;
+  }
+
   createTodoItem() {
     if(this.todoItemForm.invalid){
+      this.getEndDate.markAsDirty();
+      this.getStartDate.markAsDirty();
       return;
     }
-    if(this.getStartDate > this.getEndDate){
+    if(!this.isValidDateTime(this.getStartDate.value, this.getEndDate.value)){
       return;
     }
+
+    this.errorMessageDateTime = '';
+    this.isLoading = true;
     var todoItem : TodoItem = new TodoItem();
-    todoItem.title = this.getTitle;
-    todoItem.description = this.getDescription;
-    todoItem.startSchedule = this.getStartDate;
-    todoItem.endSchedule = this.getEndDate;
+    todoItem.title = this.getTitle.value;
+    todoItem.description = this.getDescription.value;
+    todoItem.startSchedule = this.getStartDate.value;
+    todoItem.endSchedule = this.getEndDate.value;
     todoItem.createdDate = new Date();
     this.todoItemService.addItem(todoItem);
-    this.close();
   }
 
-  get getStartDate() : Date {
-    return this.todoItemForm.controls['startDate'].value;
+  get getStartDate() {
+    return this.todoItemForm.get('startDate');
   }
 
-  get getTitle(): string {
-    return this.todoItemForm.controls['title'].value;
+  get getTitle() {
+    return this.todoItemForm.get('title');
   }
 
-  get getDescription() : string {
-    return this.todoItemForm.controls['description'].value;
+  get getDescription()  {
+    return this.todoItemForm.get('description');
   }
 
-  get getEndDate() : Date {
-    return this.todoItemForm.controls['endDate'].value;
+  get getEndDate()  {
+    return this.todoItemForm.get('endDate');
   }
 
   setFormValue(name:string, value:any)  {
@@ -101,16 +113,20 @@ export class ModalComponent implements OnInit , ModalController {
   }
 
   deleteTodoItem(id: number| string) {
+    this.isLoading = true;
     this.todoItemService.removeItem(id);
-    this.close();
   }
 
   editTodoItem(id: number| string){
+    if(!this.isValidDateTime(this.getStartDate.value, this.getEndDate.value)){
+      return;
+    }
+    this.isLoading = true;
     var todoItem : TodoItem = new TodoItem();
-    todoItem.title = this.getTitle;
-    todoItem.description = this.getDescription;
-    todoItem.startSchedule = this.getStartDate;
-    todoItem.endSchedule = this.getEndDate;
+    todoItem.title = this.getTitle.value;
+    todoItem.description = this.getDescription.value;
+    todoItem.startSchedule = this.getStartDate.value;
+    todoItem.endSchedule = this.getEndDate.value;
     todoItem.modifyDate = new Date();
 
     this.todoItemService.editItem(id, todoItem);
@@ -125,7 +141,7 @@ export class ModalComponent implements OnInit , ModalController {
         eventId: id
       }
     };
-    this.bsModalRef = this.modalService.show(ModalComponent, initialState);
+    this.modalService.show(ModalComponent, initialState);
   }
 
 
@@ -133,5 +149,17 @@ export class ModalComponent implements OnInit , ModalController {
     this.modalService.hide();
   }
 
+  isValidDateTime(start: Date, end: Date) {
+    if(start > end || this.isSameDate(start, end)){
+      this.errorMessageDateTime = 'Start date must be less more than end date';
+      return false;
+    }
+    return true;
+  }
 
+  isSameDate(start: Date, end: Date){
+    return (start.getDay() == end.getDay() && start.getMonth() == end.getMonth() &&
+      start.getFullYear() == end.getFullYear() && start.getHours() == end.getHours() &&
+      start.getMinutes() == end.getMinutes())
+  }
 }

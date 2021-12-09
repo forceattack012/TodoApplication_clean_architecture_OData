@@ -67,7 +67,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "TodoItemWebApp:build"
+            "browserTarget": "TodoItemWebApp:build",
+           // "disableHostCheck": true for test ngrok
           },
           "configurations": {
             "production": {
