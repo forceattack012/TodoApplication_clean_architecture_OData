@@ -34,8 +34,9 @@ namespace TodoApplication.API.Controllers
             return Created(result);
         }
 
+        [HttpPatch("api/v1/todoitem/{id}")]
         [EnableQuery]
-        public async Task<IActionResult> Patch([FromODataUri] long id, [FromBody] UpdateTodoItemCommand updateTodoItemCommand)
+        public async Task<IActionResult> Patch(long id, [FromBody] UpdateTodoItemCommand updateTodoItemCommand)
         {
             var command = new UpdateTodoItemCommand(id);
             command.Title = updateTodoItemCommand.Title;
@@ -51,7 +52,7 @@ namespace TodoApplication.API.Controllers
 
         [HttpDelete("api/v1/todoitem/{id}")]
         [EnableQuery(AllowedQueryOptions = AllowedQueryOptions.All)]
-        public async Task<IActionResult> Delete([FromODataUri] long id)
+        public async Task<IActionResult> Delete(long id)
         {
             var command = new DeleteTodoItemCommand(id);
 

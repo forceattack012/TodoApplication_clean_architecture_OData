@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">{{title}}</h4>
+  <h4 class="modal-title pull-left">{{header}}</h4>
   <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="close()">
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
@@ -66,6 +66,6 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-primary" *ngIf="buttonName === 'Create'" (click)="createTodoItem()">{{buttonName}}</button>
-  <button type="button" class="btn btn-primary" *ngIf="buttonName === 'Edit'" (click)="createTodoItem()">{{buttonName}}</button>
-  <button type="button" class="btn btn-danger" (click)="deleteTodoItem()" *ngIf="buttonName !== 'Create'">Delete</button>
+  <button type="button" class="btn btn-primary" *ngIf="buttonName === 'Edit'" (click)="editTodoItem(eventId)">{{buttonName}}</button>
+  <button type="button" class="btn btn-danger" (click)="deleteTodoItem(eventId)" *ngIf="buttonName !== 'Create'">Delete</button>
 </div>

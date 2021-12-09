@@ -11,6 +11,5 @@ namespace TodoApplication.Application.Commands
         public DateTime EndSchedule { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifyDate { get; set; }
-        public bool IsComplete { get; set; }
     }
 }

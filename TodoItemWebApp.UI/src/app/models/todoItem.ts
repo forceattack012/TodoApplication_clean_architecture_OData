@@ -1,6 +1,9 @@
 export class TodoItem {
+  id: number | string;
   title: string;
   description: string;
-  startDate: Date;
-  endDate: Date;
+  startSchedule: Date;
+  endSchedule: Date;
+  createdDate: Date;
+  modifyDate: Date;
 }

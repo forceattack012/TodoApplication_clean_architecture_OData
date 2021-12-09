@@ -25,9 +25,10 @@ namespace TodoApplication.Application.Handlers
                 Title = request.Title,
                 Description = request.Description,
                 CreatedDate = request.CreatedDate,
+                EndSchedule = request.EndSchedule,
                 ModifyDate = request.ModifyDate,
                 StartSchedule = request.StartSchedule,
-                IsComplete = request.IsComplete
+                IsComplete = true
             };
 
             await _todoItemRepo.AddAsync(newTodoItem);

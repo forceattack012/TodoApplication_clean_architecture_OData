@@ -74,21 +74,21 @@ export class CalendarComponent implements OnInit {
   constructor(private modalController: ModalController, private todoItemService: TodoItemService) { }
 
   ngOnInit(): void {
+    this.todoItemService.getItem();
     this.todoItemSub = this.todoItemService.getItemUpdateListener().subscribe(item => {
       this.todoItems = item;
-      console.log(item);
-      //console.log(this.todoItems.length);
       if(this.todoItems.length > 0) {
-        this.todoItems.map(r => {
-          this.event.start = r.startDate;
-          this.event.end = r.endDate,
-          this.event.title = r.title
+        this.events = this.todoItems.map(r => {
+          return {
+            id: r.id,
+            start: r.startSchedule,
+            end : r.endSchedule,
+            title : r.title
+          }
         });
-        this.events.push(this.event);
-        //this.refresh.next();
+        this.refresh.next();
       }
     });
-    //console.log(this.events)
   }
 
   openModalTodoItem() : void {
@@ -135,7 +135,10 @@ export class CalendarComponent implements OnInit {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    console.log(action);
+    if(action !== 'Clicked'){
+      return;
+    }
+    this.modalController.open('Edit Todo Item','Edit',event.id);
   }
 
   setView(view: CalendarView) {
